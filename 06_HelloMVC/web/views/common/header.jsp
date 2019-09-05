@@ -91,7 +91,7 @@
 				<a href="<%=request.getContextPath()%>/notice/noticeList">공지사항</a>
 			</li>
 			<li id="board">
-				<a href="#">게시판</a>
+				<a href="<%=request.getContextPath()%>/board/boardList">게시판</a>
 			</li>
 			<li id="gallary">
 				<a href="#">사진게시판</a>

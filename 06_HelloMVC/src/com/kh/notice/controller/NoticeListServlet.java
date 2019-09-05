@@ -42,11 +42,12 @@ public class NoticeListServlet extends HttpServlet {
 		
 		NoticeService service=new NoticeService();
 		int totalData=service.selectCountList();
+		System.out.println(totalData);
 		List<Notice> list= new NoticeService().selectNoticeList(cPage,numPerPage);
 		
 		
 		//페이지 만드는 설정
-		int totalPage=(int )Math.ceil((double)totalData/numPerPage);
+		int totalPage=(int)Math.ceil((double)totalData/numPerPage);
 		String pageBar="";
 		int pageBarSize=5;
 		int pageNo=((cPage-1)/pageBarSize)*pageBarSize+1; //시작되는 기준숫자

@@ -67,7 +67,6 @@
 			<td><%=n.getNotice_date() %></td>
 		</tr>
 	<% } %>
-	
         </table>
         <div id="pageBar">
         	<%=request.getAttribute("pageBar") %>

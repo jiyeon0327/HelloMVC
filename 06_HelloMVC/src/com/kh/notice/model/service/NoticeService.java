@@ -60,7 +60,21 @@ public class NoticeService {
 	public int updateNotice(Notice n) {
 		Connection conn = getConnection();
 		int result = dao.updateNotice(conn,n);
-		System.out.println(result);
+		
+		
+		if(result>0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+	}
+
+
+	public int deleteDelete(int notice_No) {
+		Connection conn=getConnection();
+		int result = dao.deleteNotice(conn,notice_No);
 		if(result>0) {
 			commit(conn);
 		}else {

@@ -146,4 +146,20 @@ public class NoticeDao {
 		
 	}
 
+	public int deleteNotice(Connection conn, int notice_No) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String sql = prop.getProperty("deleteNotice");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, notice_No);
+			result = pstmt.executeUpdate();
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}return result;
+	}
+
 }
