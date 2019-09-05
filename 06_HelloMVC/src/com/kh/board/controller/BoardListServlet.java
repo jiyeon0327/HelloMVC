@@ -52,6 +52,8 @@ public class BoardListServlet extends HttpServlet {
 		System.out.println(pageNo);
 		int pageEnd=pageNo+pageBarSize -1;
 		
+		
+		
 		if(pageNo==1) {
 			pageBar += "<span>[이전]</span>";
 		}else {
@@ -73,6 +75,7 @@ public class BoardListServlet extends HttpServlet {
 		request.setAttribute("pageBar", pageBar);
 		request.setAttribute("list", list);
 		request.setAttribute("cPage", cPage);
+		
 		request.getRequestDispatcher("/views/board/boardList.jsp").forward(request, response);;
 	}
 

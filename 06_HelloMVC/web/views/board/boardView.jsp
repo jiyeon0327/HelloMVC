@@ -2,7 +2,11 @@
     pageEncoding="UTF-8"%>
 <%@ include file="/views/common/header.jsp"%>
 <%@ page import="com.kh.board.model.vo.Board" %>
-<% Board b=(Board)request.getAttribute("board"); %>
+
+<%
+	Board b=(Board)request.getAttribute("board"); 
+	int cPage=(int)(request.getAttribute("cPage"));
+%>
 	    <style>
     section#board-container{width:600px; margin:0 auto; text-align:center;}
     section#board-container h2{margin:10px 0;}
@@ -36,7 +40,7 @@
 				 	<!-- file사진으로 출력되고 누르면 다운로드 될수있게 설정
 					이미지 옆에는 올린이름이 출력될 수 있도록 설정(originalfilename) -->
 					<% if(b.getBoard_original_filename()!=null){ %>>
-						<img src="<%=request.getContextPath() %>/images/file.png"><%= b.getBoard_original_filename() %>
+						<img src="<%=request.getContextPath() %>/images/file.png"/><%= b.getBoard_original_filename() %>
 					<% } %>
 				</td>
 			</tr>
@@ -45,17 +49,25 @@
 				<td><%=b.getBoard_content() %></td>
 			</tr>
 			<%--글작성자/관리자인경우 수정삭제 가능 --%>
+			
 			<tr>
 				<th colspan="2">
+					<input type="button" value="목록으로 " onclick="fn_listBoard();"/>
+			<% if(loginMember!=null && ( loginMember.getUserId().equals("admin") || loginMember.getUserId().equals(b.getBoard_writer()) ) ) { %>
 					<input type="button" value="수정하기" onclick="fn_updateBoard()">
 					<input type="button" value="삭제하기" onclick="fn_deleteBoard()">
+			<% } %>
 				</th>
 			</tr>
-			
 
 		</table>
 
     <script>
+    
+    function fn_listBoard(){
+    	location.href='<%=request.getContextPath()%>/board/boardList?cPage=<%=request.getAttribute("cPage")!=null?request.getAttribute("cPage"):"1"%>';
+	
+    }
     function fn_updateBoard(){
         
     }

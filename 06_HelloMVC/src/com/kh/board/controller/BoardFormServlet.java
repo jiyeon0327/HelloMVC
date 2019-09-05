@@ -8,16 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class BoardWriteServlet
+ * Servlet implementation class BoardFormServlet
  */
-@WebServlet("/board/boardWrite")
-public class BoardWriteServlet extends HttpServlet {
+@WebServlet("/board/boardForm")
+public class BoardFormServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public BoardWriteServlet() {
+    public BoardFormServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -26,7 +26,10 @@ public class BoardWriteServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("/views/board/boardWrite.jsp").forward(request, response);
+		//이 서블릿의 역할은
+		//페이지전환해주는 form.jsp로
+		request.getRequestDispatcher("/views/board/boardForm.jsp").forward(request, response);
+		
 	}
 
 	/**

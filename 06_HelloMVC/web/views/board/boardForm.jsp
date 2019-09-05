@@ -10,23 +10,32 @@
     </style>
 <section id="board-container">
     <h2>게시판 작성</h2>
-    <form action="<%=request.getContextPath() %>/board/boardWriteEnd" method="post" enctype="multipart/form-data">
+   
+    <form action="<%=request.getContextPath() %>/board/boardFormEnd" method="post" enctype="multipart/form-data">
         <table id="tbl-board">
         <tr>
             <th>제 목</th>
-            <td><input type="text" name="title" required></td>
+            <td>
+           		<input type="text" name="title" id="title" required/>
+            </td>
         </tr>
         <tr>
             <th>작성자</th>
-            <td><input type="text" name="writer" value= "<%= loginMember.getUserId() %>"readonly required/></td>
+            <td>
+            	<input type="text" name="writer" id="writer" value= "<%= loginMember.getUserId() %>"readonly required/>
+            </td>
         </tr> 
         <tr>
             <th>첨부파일</th>
-            <td><input type="file" name="up_file"></td>
+            <td>
+            	<input type="file" name="up_file" id="up_file" />
+            </td>
         </tr>
         <tr>
             <th>내 용</th>
-            <td><textarea rows="5" cols="50" name="content"></textarea></td>
+            <td>
+          		 <textarea rows="5" cols="50" name="content" id="content"></textarea>
+            </td>
         </tr>
         <tr>
             <th colspan="2">

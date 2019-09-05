@@ -6,6 +6,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
@@ -73,7 +74,7 @@ public class BoardDao {
 				list.add(b);
 			}
 		}catch(SQLException e) {
-			e.printStackTrace();
+			e.printStackTrace(); 
 		}finally {
 			close(rs);
 			close(pstmt);
@@ -110,4 +111,74 @@ public class BoardDao {
 		}return b;
 	}
 
-}
+	public int updateReadCount(Connection conn, int board_no) {
+		PreparedStatement pstmt=null;
+		int result=0;
+		String sql=prop.getProperty("updateReadCount");
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1,board_no);
+			result=pstmt.executeUpdate();
+			
+			}catch(SQLException e) {
+				e.printStackTrace();
+				
+			}finally {
+				close(pstmt);
+				
+			}return result;
+		}
+
+	public int insertBoard(Connection conn, Board b) {
+		PreparedStatement pstmt=null;
+		int result=0;
+		String sql=prop.getProperty("insertBoard");
+		try {
+			
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, b.getBoard_title());
+			pstmt.setString(2, b.getBoard_writer());
+			pstmt.setString(3, b.getBoard_content());
+			pstmt.setString(4, b.getBoard_original_filename());
+			pstmt.setString(5, b.getBoard_rename_filename());
+		
+			result=pstmt.executeUpdate();
+
+			}catch(SQLException e) {
+				
+				e.printStackTrace();
+				
+			}finally {
+				
+				close(pstmt);
+				
+			}return result;
+		}
+
+	public int seletBoardNo(Connection conn) {
+		Statement stmt=null;
+		ResultSet rs=null;
+		int result=0;
+		String sql="select seq_board_no.currval from dual";
+		try {
+			stmt=conn.createStatement();
+			rs=stmt.executeQuery(sql);
+			if(rs.next()) {
+				result=rs.getInt(1);
+				
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(stmt);
+		}return result;
+	}
+	}
+/*
+  조회 수 클릭 한 아이디당 한번만 가능하도록 로직짜기
+  :쿠키 에 저장 하는 식으로
+  board_no는 기본키니까 쿠키에 기본키를 저장할 것임
+  
+ */
