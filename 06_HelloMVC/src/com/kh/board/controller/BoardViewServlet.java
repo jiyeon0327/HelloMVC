@@ -1,6 +1,8 @@
 package com.kh.board.controller;
 
 import java.io.IOException;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.Cookie;
@@ -10,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.kh.board.model.service.BoardService;
 import com.kh.board.model.vo.Board;
+import com.kh.board.model.vo.BoardComment;
 
 /**
  * Servlet implementation class BoardViewServlet
@@ -69,12 +72,16 @@ public class BoardViewServlet extends HttpServlet {
 			Cookie c = new Cookie("boardCookie",boardCookieVal + "|" + Board_no + "|");
 				c.setMaxAge(-1);//브라우저가 close되거나 로그아웃했을 때 삭제
 				response.addCookie(c);//응답자한테 쿠키데이터를 넣어 준것임
-			}
+			} 
 		
 		Board b = new BoardService().selectBoardView(Board_no, hasRead);
+		
+		List<BoardComment> list = new BoardService().selectBoardComment(Board_no);
 		request.setAttribute("board", b);
+		request.setAttribute("list", list);
 		request.setAttribute("cPage", cPage);
 		request.getRequestDispatcher("/views/board/boardView.jsp").forward(request, response);
+		
 		
 		}	
 

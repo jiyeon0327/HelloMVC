@@ -7,6 +7,7 @@ import java.util.List;
 
 import com.kh.board.model.dao.BoardDao;
 import com.kh.board.model.vo.Board;
+import com.kh.board.model.vo.BoardComment;
 
 import static common.template.JDBCTemplate.getConnection;
 import static common.template.JDBCTemplate.close;
@@ -60,5 +61,42 @@ public class BoardService {
 			rollback(conn);
 		}return result;
 	}
+
+	public int insertBoardComment(BoardComment bc) {
+		Connection conn=getConnection();
+		int result=dao.insertBoardComment(conn, bc);
+		if(result>0){
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+			
+		}
+
+	public List<BoardComment> selectBoardComment(int board_no) {
+		Connection conn=getConnection();
+		List<BoardComment> list = dao.selectBoardComment(conn,board_no);
+		close(conn);
+		return list;
+
+	}
+
+	public int deleteComment(int boardCommentNo, int boardRef) {
+		Connection conn=getConnection();
+		int result=dao.deleteComment(conn,boardCommentNo,boardRef);
+		if(result>0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+	}
+
+	
+	
+		
 
 }

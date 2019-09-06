@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Properties;
 
 import com.kh.board.model.vo.Board;
+import com.kh.board.model.vo.BoardComment;
 
 import static common.template.JDBCTemplate.close;
 
@@ -39,7 +40,7 @@ public class BoardDao {
 			pstmt =conn.prepareStatement(sql);
 			rs=pstmt.executeQuery();
 			if(rs.next()) {
-				result = rs.getInt(1);//컬럼명
+				result = rs.getInt(1);//컬럼명 첫번째 를 뜻함, 이런경우 컬럼명이 길거나 쓰기 힘들어서 간단하게 불러오기 위해서씀
 				
 			}
 			
@@ -175,7 +176,80 @@ public class BoardDao {
 			close(stmt);
 		}return result;
 	}
+
+	public int insertBoardComment(Connection conn, BoardComment bc) {
+			PreparedStatement pstmt =null;
+			int result = 0;
+			String sql=prop.getProperty("insertBoardComment");
+			try {
+				pstmt=conn.prepareStatement(sql);
+				pstmt.setInt(1, bc.getBoardCommentLevel());
+				pstmt.setString(2, bc.getBoardCommentWriter());
+				pstmt.setString(3, bc.getBoardCommentContent());
+				pstmt.setInt(4, bc.getBoardRef());
+				//board와 comment 자체를 참조함 
+				//comment_no에 0번은 안들어감. 부모의 참조할 수 없는 게 없어서 /foreign에 null은 들어갈수 있어
+				//int형 자료형에 자료가 없어 null값을 넣을 때는
+				//int를 string으로 바꾼다
+//				pstmt.setInt(5, bc.getBoardCommentRef());
+				//자동형변환으로 써서 변환시키기
+				pstmt.setString(5, bc.getBoardCommentRef()==0?null:String.valueOf(bc.getBoardCommentRef()));
+				result=pstmt.executeUpdate();
+			}catch(SQLException e) {
+				e.printStackTrace();
+			}finally {
+				close(pstmt);
+			}return result;
 	}
+
+	
+	public List<BoardComment> selectBoardComment(Connection conn, int board_no) {
+		PreparedStatement pstmt =null;
+		ResultSet rs=null;
+		List<BoardComment> list=new ArrayList();
+		String sql=prop.getProperty("selectBoardComment");
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1,board_no);
+			rs=pstmt.executeQuery();
+			while(rs.next()) {
+				BoardComment bc = new BoardComment();
+				bc.setBoardCommentNo(rs.getInt("board_comment_no"));
+				bc.setBoardCommentLevel(rs.getInt("board_comment_level"));
+				bc.setBoardCommentWriter(rs.getString("board_comment_writer"));
+				bc.setBoardCommentContent(rs.getString("board_comment_content"));
+				bc.setBoardCommentRef(rs.getInt("board_comment_ref"));
+				bc.setBoardCommentDate(rs.getDate("board_comment_date"));
+				list.add(bc);
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}return list;
+	
+	}
+
+	public int deleteComment(Connection conn, int boardCommentNo, int boardRef) {
+		PreparedStatement pstmt = null;
+		int result=0;
+		String sql =prop.getProperty("deleteComment");
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1,boardCommentNo );
+			pstmt.setInt(2, boardRef);
+			result=pstmt.executeUpdate();
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+			
+		}return result;
+		
+	}
+}
 /*
   조회 수 클릭 한 아이디당 한번만 가능하도록 로직짜기
   :쿠키 에 저장 하는 식으로
