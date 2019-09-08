@@ -4,15 +4,16 @@
 <style>
 input#btn-add{top:10%; float:right;}
 
-div#text-first{float: left; padding: 2%; width: 33%;}
-div#text-second{float: left; padding: 2%; width: 33%;}
-div#text-third{float: left; padding: 2%; width: 33%;}
-
-div#text-first-F{float: Right; padding: 2%; width: 33%;}
-div#text-second-S{float: Right; padding: 2%; width: 33%;}
-div#text-third-T{float: Right; padding: 2%; width: 33%;}
-
-
+table#tbl-1{width:25%; margin:10%; border:1px solid gold; text-align:center; float: left;}
+table#tbl-2{width:25%; margin:10%; border:1px solid gold; text-align:center; float: left;}
+table#tbl-3{width:25%; margin:10%; border:1px solid gold; text-align:center; float: left;}
+table#tbl-4{width:25%; margin:10%; border:1px solid gold; text-align:center; float: left;}
+table#tbl-5{width:25%; margin:10%; border:1px solid gold; text-align:center; float: left;}
+table#tbl-6{width:25%; margin:10%; border:1px solid gold; text-align:center; float: left;}
+table {
+  border-collapse: separate;
+  border-spacing: 5px 20px;
+}
 
 </style>
 
@@ -24,13 +25,14 @@ div#text-third-T{float: Right; padding: 2%; width: 33%;}
 			location.href='<%=request.getContextPath()%>/board/foodForm'
 		}
 		</script>
-	<table id="tbl-board" >
-	<div id="text-first">
+	<table id="tbl-board"  cellpadding="1%"; cellspacing="1%";>
+	
+		<table id="tbl-1" >
 		<tr>
-			<th colspan="2" text-align="left">번호</th>
+			<th >번호</th>
    		</tr>
    		 <tr>
-    		<td colspan="2">그림</td>
+    		<td colspan="2" weight="200px" height="250px">그림</td>
    		</tr>
      	<tr>
 			<td>제목</td>
@@ -40,13 +42,14 @@ div#text-third-T{float: Right; padding: 2%; width: 33%;}
 			<td>조회수</td>
 			<td>리뷰</td>
 		</tr>
-	</div>
-	<div id="text-second">
+		
+		</table>
+		<table id="tbl-2">
 		<tr>
-			<th colspan="2" text-align="left">번호</th>
+			<th >번호</th>
    		</tr>
    		 <tr>
-    		<td colspan="2">그림</td>
+    		<td colspan="2" weight="200px" height="250px">그림</td>
    		</tr>
      	<tr>
 			<td>제목</td>
@@ -56,13 +59,14 @@ div#text-third-T{float: Right; padding: 2%; width: 33%;}
 			<td>조회수</td>
 			<td>리뷰</td>
 		</tr>
-	</div>
-	<div id="text-third">
+		
+		</table>
+		<table id="tbl-3">
 		<tr>
-			<th colspan="2" text-align="left">번호</th>
+			<th >번호</th>
    		</tr>
    		 <tr>
-    		<td colspan="2">그림</td>
+    		<td colspan="2" weight="200px" height="250px">그림</td>
    		</tr>
      	<tr>
 			<td>제목</td>
@@ -72,12 +76,13 @@ div#text-third-T{float: Right; padding: 2%; width: 33%;}
 			<td>조회수</td>
 			<td>리뷰</td>
 		</tr>
-	<div id="text-first-F">
+		</table>
+		<table id="tbl-4">
 		<tr>
-			<th colspan="2" text-align="left">번호</th>
+			<th >번호</th>
    		</tr>
    		 <tr>
-    		<td colspan="2">그림</td>
+    		<td colspan="2" weight="200px" height="250px">그림</td>
    		</tr>
      	<tr>
 			<td>제목</td>
@@ -87,13 +92,14 @@ div#text-third-T{float: Right; padding: 2%; width: 33%;}
 			<td>조회수</td>
 			<td>리뷰</td>
 		</tr>
-	</div>
-	<div id="text-second-S">
+		</table>
+		
+		<table id="tbl-5">
 		<tr>
-			<th colspan="2" text-align="left">번호</th>
+			<th >번호</th>
    		</tr>
    		 <tr>
-    		<td colspan="2">그림</td>
+    		<td colspan="2" weight="200px" height="250px">그림</td>
    		</tr>
      	<tr>
 			<td>제목</td>
@@ -103,13 +109,13 @@ div#text-third-T{float: Right; padding: 2%; width: 33%;}
 			<td>조회수</td>
 			<td>리뷰</td>
 		</tr>
-	</div>
-	<div id="text-third-T">
+		</table>
+		<table id="tbl-6">
 		<tr>
-			<th colspan="2" text-align="left">번호</th>
+			<th >번호</th>
    		</tr>
    		 <tr>
-    		<td colspan="2">그림</td>
+    		<td colspan="2" weight="200px" height="250px">그림</td>
    		</tr>
      	<tr>
 			<td>제목</td>
@@ -119,13 +125,9 @@ div#text-third-T{float: Right; padding: 2%; width: 33%;}
 			<td>조회수</td>
 			<td>리뷰</td>
 		</tr>
-	</div>
-	
-	
-	
-	
-	
-	
+		</table>
+		
+		
 	
 	
 	</table>
