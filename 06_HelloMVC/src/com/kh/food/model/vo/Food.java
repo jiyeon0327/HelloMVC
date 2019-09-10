@@ -1,4 +1,4 @@
-package com.kh.food.vo;
+package com.kh.food.model.vo;
 
 import java.sql.Date;
 
