@@ -2,7 +2,6 @@
     pageEncoding="UTF-8"%>
 <%@ page import="com.kh.member.model.vo.Member" %>
 
-
 <%
 	Member loginMember=(Member)session.getAttribute("loginMember");
 	Cookie[] cookies=request.getCookies();//쿠키에 저장된거 다른 변수에 저장시킴

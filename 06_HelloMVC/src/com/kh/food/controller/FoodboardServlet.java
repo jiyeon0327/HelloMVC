@@ -33,11 +33,22 @@ public class FoodboardServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
-		List<Food> list=new FoodService().selectFoodList();
+		
+		List<Food> list = new FoodService().selectFoodList();
 		
 		request.setAttribute("list", list);
-		
 		request.getRequestDispatcher("/views/food/foodList.jsp").forward(request, response);
+		
+		
+		
+		
+		
+		
+//		List<Food> list=new FoodService().selectFoodList();
+//		
+//		request.setAttribute("list", list);
+//		
+//		request.getRequestDispatcher("/views/food/foodList.jsp").forward(request, response);
 		
 		 
 	}
