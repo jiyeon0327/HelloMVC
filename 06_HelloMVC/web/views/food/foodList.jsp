@@ -20,6 +20,7 @@ span.foodTag{ font-style:italic; }
 	<section id="food-container">
 	<MARQUEE behavior=alternate><h2 style="width:100; height:50;">FOOD ZONE</h2></MARQUEE>
 	
+	
 	<table id ="big-tbl">
 	<% for(Food f : list) {%>
 		<% if(count==0 || count==4)  {%><tr> <% }%>
@@ -45,8 +46,13 @@ span.foodTag{ font-style:italic; }
 	<% } %>
 	</table>
 	
-
+	<!--pageBar도 있어야함-->
+		<div id="pageBar" style="text-align: center;">
+			<%=request.getAttribute("pageBar") %> 
+		</div>
+	
 	</section>
+	
 
 <%@ include file="/views/common/footer.jsp"%>	
 

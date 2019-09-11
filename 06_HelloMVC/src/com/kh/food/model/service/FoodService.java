@@ -15,11 +15,18 @@ public class FoodService {
 	
 	private FoodDao dao = new FoodDao();
 	
-	public List<Food> selectFoodList() {
+	public List<Food> selectFoodList(int cPage, int numPerPage) {
 		Connection conn  = getConnection();
-		List<Food> list = dao.selectFoodList(conn);
+		List<Food> list = dao.selectFoodList(conn,cPage,numPerPage);
 		close(conn);
 		return list;
+	}
+
+	public int selectCountFood_Board() {
+		Connection conn=getConnection();
+		int result=dao.selectCountFood_Board(conn);
+		close(conn);
+		return result;
 	}
 
 	

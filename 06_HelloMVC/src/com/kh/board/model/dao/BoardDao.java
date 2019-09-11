@@ -59,8 +59,8 @@ public class BoardDao {
 		String sql=prop.getProperty("selectBoardList");
 		try {
 			pstmt=conn.prepareStatement(sql);
-			pstmt.setInt(1, (cPage-1)*numPerPage);
-			pstmt.setInt(2, cPage*numPerPage+1);
+			pstmt.setInt(1, (cPage-1)*numPerPage+1);
+			pstmt.setInt(2, cPage*numPerPage);
 			rs=pstmt.executeQuery();
 			while(rs.next()) {
 				Board b=new Board();

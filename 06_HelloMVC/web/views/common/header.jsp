@@ -96,7 +96,7 @@
 				<a href="#">사진게시판</a>
 			</li>
 			<li id="FoodCourt">
-				<a href="<%=request.getContextPath()%>/food/foodboard">맛집게시판</a>
+				<a href="<%=request.getContextPath()%>/food/foodList">맛집게시판</a>
 			</li>
 			<%if(loginMember!=null&&loginMember.getUserId().equals("admin")) {%>
 			<li id="admin-member">
