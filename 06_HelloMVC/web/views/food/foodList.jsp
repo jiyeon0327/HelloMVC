@@ -19,7 +19,13 @@ span.foodTag{ font-style:italic; }
 </style>
 	<section id="food-container">
 	<MARQUEE behavior=alternate><h2 style="width:100; height:50;">FOOD ZONE</h2></MARQUEE>
-	
+	<script>
+	 $(function(){
+			$("#btn-add").click(function(){
+				location.href= "<%= request.getContextPath() %>/food/foodForm";
+			});
+		}); 
+	</script>
 	
 	<table id ="big-tbl">
 	<% for(Food f : list) {%>

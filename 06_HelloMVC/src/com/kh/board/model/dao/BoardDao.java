@@ -64,7 +64,7 @@ public class BoardDao {
 			rs=pstmt.executeQuery();
 			while(rs.next()) {
 				Board b=new Board();
-				b.setBoard_no(rs.getInt("Board_no"));
+			
 				b.setBoard_title(rs.getString("Board_title"));
 				b.setBoard_writer(rs.getString("Board_writer"));
 				b.setBoard_content(rs.getString("Board_content"));
